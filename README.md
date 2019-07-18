@@ -1,5 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+> Demos Material UI in React with custom insertion points
+
 ## Available Scripts
 
 In the project directory, you can run:

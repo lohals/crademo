@@ -15,17 +15,28 @@ customElements.define(
   ShadowDomContainerExposingStyleInsertionPointAndSpaRoot
 );
 
+const shadowSpaContainer: ShadowDomContainerExposingStyleInsertionPointAndSpaRoot = document.createElement(
+  "shadow-spa-container"
+) as ShadowDomContainerExposingStyleInsertionPointAndSpaRoot;
+
+shadowSpaContainer.setAttribute("id", "container-1");
+
+// render SPA inside shadowDom
+
 customElements.define(
   "shadow-spa-container2",
   ShadowDomContainerExposingStyleInsertionPointAndSpaRoot2
 );
 
-const shadowSpaContainer: ShadowDomContainerExposingStyleInsertionPointAndSpaRoot = document.createElement(
-  "shadow-spa-container"
-) as ShadowDomContainerExposingStyleInsertionPointAndSpaRoot;
+const shadowSpaContainer2: ShadowDomContainerExposingStyleInsertionPointAndSpaRoot2 = document.createElement(
+  "shadow-spa-container2"
+) as ShadowDomContainerExposingStyleInsertionPointAndSpaRoot2;
+
+shadowSpaContainer2.setAttribute("id", "container-2");
+
+document.body.appendChild(shadowSpaContainer2);
 document.body.appendChild(shadowSpaContainer);
 
-// render SPA inside shadowDom
 ReactDOM.render(
   <App
     id={1}
@@ -33,12 +44,6 @@ ReactDOM.render(
   />,
   shadowSpaContainer.SpaRoot
 );
-
-const shadowSpaContainer2: ShadowDomContainerExposingStyleInsertionPointAndSpaRoot2 = document.createElement(
-  "shadow-spa-container2"
-) as ShadowDomContainerExposingStyleInsertionPointAndSpaRoot2;
-
-document.body.appendChild(shadowSpaContainer2);
 
 ReactDOM.render(
   <App
@@ -48,8 +53,8 @@ ReactDOM.render(
   shadowSpaContainer2.SpaRoot
 );
 
-// ReactDOM.render(<App />, document.getElementById("root"));
-
+ReactDOM.render(<App id={3} />, document.getElementById("root"));
+ReactDOM.render(<App id={4} />, document.getElementById("root2"));
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA

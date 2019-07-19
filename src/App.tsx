@@ -23,6 +23,7 @@ const App: React.FC<AppProps> = ({ jssStylesInsertionPoint, id }) => {
               })
             : create(jssPreset())
         }
+        sheetsManager={new Map()}
       >
         <div className="App">
           <Button variant="contained" color="primary">

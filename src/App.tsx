@@ -6,22 +6,27 @@ import { create, Jss } from "jss";
 import { jssPreset, StylesProvider } from "@material-ui/styles";
 
 type AppProps = {
-  jssStylesInsertionPoint: HTMLElement;
+  jssStylesInsertionPoint?: HTMLElement;
+  id: number;
 };
 
-const App: React.FC<AppProps> = ({ jssStylesInsertionPoint }) => {
+const App: React.FC<AppProps> = ({ jssStylesInsertionPoint, id }) => {
   return (
     <div>
       <StylesProvider
-        jss={create({
-          ...jssPreset(),
-          // define a custom insertion point that JSS will look for when injecting the styles into the DOM.
-          insertionPoint: jssStylesInsertionPoint
-        })}
+        jss={
+          jssStylesInsertionPoint
+            ? create({
+                ...jssPreset(),
+                // define a custom insertion point that JSS will look for when injecting the styles into the DOM.
+                insertionPoint: jssStylesInsertionPoint
+              })
+            : create(jssPreset())
+        }
       >
         <div className="App">
           <Button variant="contained" color="primary">
-            Hello with jss style
+            Hello with jss style {id}
           </Button>
         </div>
       </StylesProvider>

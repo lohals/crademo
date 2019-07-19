@@ -5,19 +5,27 @@ import Button from "@material-ui/core/button";
 import { create, Jss } from "jss";
 import { jssPreset, StylesProvider } from "@material-ui/styles";
 
-const jss: Jss = create({
-  ...jssPreset(),
-  // define a custom insertion point that JSS will look for when injecting the styles into the DOM.
-  insertionPoint: "jss-insertion-point"
-});
+type AppProps = {
+  jssStylesInsertionPoint: HTMLElement;
+};
 
-const App: React.FC = () => {
+const App: React.FC<AppProps> = ({ jssStylesInsertionPoint }) => {
   return (
-    <StylesProvider jss={jss}>
-      <div className="App">
-        <Button>Hello</Button>
-      </div>
-    </StylesProvider>
+    <div>
+      <StylesProvider
+        jss={create({
+          ...jssPreset(),
+          // define a custom insertion point that JSS will look for when injecting the styles into the DOM.
+          insertionPoint: jssStylesInsertionPoint
+        })}
+      >
+        <div className="App">
+          <Button variant="contained" color="primary">
+            Hello with jss style
+          </Button>
+        </div>
+      </StylesProvider>
+    </div>
   );
 };
 

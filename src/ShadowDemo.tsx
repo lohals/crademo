@@ -1,3 +1,5 @@
+import retargetEvents from 'react-shadow-dom-retarget-events'
+
 export class ShadowDomContainerExposingStyleInsertionPointAndSpaRoot extends HTMLElement {
   // don't understand why we have to have this reference internally (we can call it whatever)
   // since HTMLElement already exposes a general shadowRoot property, that will also hold reference to the same node it seems
@@ -23,6 +25,9 @@ export class ShadowDomContainerExposingStyleInsertionPointAndSpaRoot extends HTM
     this.SpaRoot = document.createElement("div");
     this.SpaRoot.setAttribute("id", "spa-root");
     this.InternalRootReference.appendChild(this.SpaRoot);
+
+    // retarget react events
+    retargetEvents(this.InternalRootReference);
   }
 }
 
@@ -51,5 +56,8 @@ export class ShadowDomContainerExposingStyleInsertionPointAndSpaRoot2 extends HT
     this.SpaRoot = document.createElement("div");
     this.SpaRoot.setAttribute("id", "spa-root");
     this.InternalRootReference.appendChild(this.SpaRoot);
+
+    // retarget react events
+    retargetEvents(this.InternalRootReference);
   }
 }
